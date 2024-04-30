@@ -30,4 +30,26 @@ https://junit.org/junit5/docs/current/user-guide/
   - 외부 세상과 단절된 형태
   - 테스트하기 쉬운 코드
 
-![img.png](src/main/resources/images/img.png)
+
+<img src="src/main/resources/images/img.png"  width="600" height="400"/>
+
+## TDD
+프로덕션 코드보다 테스트 코드를 먼저 작성하여
+테스트가 구현 과정을 주도하도록 하는 방법론
+red -> green -> blue
+
+<img src="src/main/resources/images/tdd.png"  width="600" height="400"/>
+
+## 선 기능 구현, 후 테스트 작성 할 시의 예상되는 문제점
+  - 테스트 자체의 누락 가능성
+  - 특정 테스트 케이스만 검증할 가능성 (해피케이스만 구현, 예외 케이스 누락)
+  - 잘못된 구현을 다소 늦게 발견할 가능성
+
+## TDD 장점
+- 과감한 리팩토링이 가능해진다.
+- 구현에 대한 빠른 피드백을 받을 수 있다.
+- 쉽게 발견하기 어려운 엣지(edge) 케이스를 놓치지 않게 해준다.
+- 복잡도가 낮은 (유연하며 ,유지보수가 쉬운), 테스트 가능한 코드로 구현하게 해준다.
+- 테스트와 상호 작용하용을 통해 더욱 좋은 구현부 코드를 만들 수 있게 해준다.
+- 
+<img src="src/main/resources/images/tddKeyword.png"  width="600" height="400"/>

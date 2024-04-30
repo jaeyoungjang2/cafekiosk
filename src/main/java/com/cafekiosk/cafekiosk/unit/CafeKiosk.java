@@ -37,11 +37,15 @@ public class CafeKiosk {
     }
 
     public int calculateTotalPrice() {
-        int totalPrice = 0;
-        for (Beverage beverage : beverages) {
-            totalPrice += beverage.getPrice();
-        }
-        return totalPrice;
+//        int totalPrice = 0;
+//        for (Beverage beverage : beverages) {
+//            totalPrice += beverage.getPrice();
+//        }
+//        return totalPrice;
+
+        return beverages.stream()
+                .mapToInt(Beverage::getPrice)
+                .sum();
     }
 
     // 테스트하기 어려움 LocalDateTime이 계속해서 변경되기 때문에, 테스트할 때마다 다른 결과를 나타낸다.
