@@ -100,7 +100,45 @@ red -> green -> blue
   - 여러 모듈이 협력하는 기능을 통합적으로 검증하는 테스트
   - 일반적으로 작은 범위의 단위 테스트만으로는 기능 전체의 신뢰성을 보장할 수 없다.
   - 풍부한 단위 테스트 & 큰 기능 단위를 검증하는 통합 테스트
-  
 
 
-![img.png](img.png)
+<img src="src/main/resources/images/layerArchitecture.png"  width="600" height="400"/>
+
+
+## Library vs Framework
+  - library는 내 코드가 주체가 된다. 필요한 기능은 외부에서 끌어오는데 이때 외부를 library라고 한다.
+  - framework는 이미 동작할 수 있는 환경들이 구성되어 있고 거기에 내 코드가 들어가는 수동적인 존재가 된다.
+
+
+<img src="src/main/resources/images/libraryframework.png"  width="600" height="400"/>
+
+## Spring framework 
+  - IoC (Inversion of Control)
+    - 스프링 만의 개념은 아니다. 다른 기술에서도 이미 존재하는 것이다.
+    - DI와 관계가 깊다.
+    - 객체의 생명주기에 대한 관리를 제 3자가 할께 (IoC container)
+
+  - DI  (Dependency Injection)
+    - 
+
+  - AOP (Aspect Oriented Programming)
+    - 비즈니스와 관계없는 프로그래밍 부분
+    - 스프링에서는 프록시를 사용해서 구현
+    - 로깅, 트랜잭션
+
+- ORM
+  - 객체 지향 패러다임과 관계형 DB 패러다임의 불일치
+  - 개발자들이 객체지향적으로 잘 짜놓고 DB에 넣을때는 필드로 분리해서 매핑하는 작업을 했음
+  - ORM을 사용함으로써 개발자는 단순 작업을 줄이고, 비즈니스 로직에 집중할 수 있다.
+
+
+- JPA
+  - Java 진영의 ORM 기줄 표준
+  - 인터페이스이고, 여러 구현체가 있지만 보통 Hibernate를 많이 사용한다.
+  - 반복적인 CRUD SQL을 생성 및 실행해주고, 여러 부가 기능들을 제공한다.
+  - 편리하지만 쿼리를 직접 작성하지 않기 때문에, 어떤 식으로 쿼리가 만들어지고 실행되는지 명확하게 이해하고 있어야 한다.
+  - Spring 진영에서는 JPA를 한번 더 추상화한 Spring Data JPA 제공
+  - QueryDSL과 조합하여 많이 사용한다. (타입체크, 동적쿼리에 대한 장점이 많기 떄문에)
+  - @Entity, @Id, @Column
+  - @ManyToOne, @OneToMany, @OneToOne, @ManyToMany (일대다 - 다대일 관계로 풀어서 사용)
+
