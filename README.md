@@ -64,5 +64,26 @@ red -> green -> blue
   - 명사의 나열보다 문장으로 : 음료 1개 추가 테스트 > 음료를 1개 추가할 수 있다.
   - 테스트 행위에 대한 결과까지 기술하기 : 음료 1개 추가 테스트 > 음료 1개를 추가하면 주문 목록에 담긴다. 
   - 메서드 관점보다 정책 관점으로 : 특정 시간 이전에 주문을 생성하면 실패한다. > 영업 시작 시간 이전에는 주문을 생성할 수 없다.
-  - ![img.png](img.png)
+  
+
+## BDD (Behavior Driven Development)
+  - TDD에서 파생된 개발 방법
+  - 함수 단위의 테스트에 집중하기보다, 시나리오에 기반한 테스트케이스 (TC) 자체에 집중하여 테스트한다.
+  - 개발자가 아닌 사람이 봐도 이해할 수 있을 정도의 추상화 수준(레벨)을 권장
+
+- GIVEN: 시나리오 진행에 필요한 모든 준비 과정 (객체, 값, 상태 등)
+- WHEN: 시나리오 진행 행동
+- THEN: 시나리오 진행에 대한 결과 명시, 검증
+- DisplayName에 명확하게 문장을 작성할 수 있도록 해준다.
+
+## SPOCK 
+  - test framework
+  - junit5와 비교 많이 되는 프레임워크입니다.
+  - spckframework.org
+  - java가 아니라 groovy 언어임
+  - bdd 프레임 워크임
+  - junit을 사용하면 주석으로 give when then 섹션으로 나눴는데
+  - 얘는 탄생자체가 bdd라서 given when then을 문법으로 만들어져있다.
+
+<img src="src/main/resources/images/testkeyword.png"  width="600" height="400"/>
 
