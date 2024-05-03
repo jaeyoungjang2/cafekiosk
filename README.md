@@ -87,3 +87,20 @@ red -> green -> blue
 
 <img src="src/main/resources/images/testkeyword.png"  width="600" height="400"/>
 
+## Layered Architecture
+  - 스프링에서 가장 많이 사용되는 아키텍처
+  - 일반적으로 3개 layer
+  - persistence layer 하위에 infrastructure layer를 두고 4개의 layer로 보는 곳도 있다.
+  - 관심사의 분리하기 위해서 layer를 분리한다. 
+  - 책임을 나눠, 유지 보수를 용이하게 하자
+
+## 통합테스트 (Integration test)
+  - 단위 테스트만으로는 커버하기 어려운 영역 (여러 객체 or 여러 모듈이 협력하게 되면서)
+  - 시나리오 단위의 테스트 (layer 단위의 테스트)
+  - 여러 모듈이 협력하는 기능을 통합적으로 검증하는 테스트
+  - 일반적으로 작은 범위의 단위 테스트만으로는 기능 전체의 신뢰성을 보장할 수 없다.
+  - 풍부한 단위 테스트 & 큰 기능 단위를 검증하는 통합 테스트
+  
+
+
+![img.png](img.png)
