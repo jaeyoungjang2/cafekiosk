@@ -173,3 +173,10 @@ red -> green -> blue
 
 ## 확인 point
     - OrderService > orderCreate() 에서 살펴보면 Order가 저장될 떄 OrderProduct가 같이 저장되는 모습을 확인할 수 있다.
+    - deleteAll을 사용하지 않고 deleteAllInBatch를 사용
+
+Test에서 @SpringBootTest와 @DataJpaTest가 있음
+    - @DataJpaTest는 내부에 @Transactional이 있어서 테스트가 끝날때 마다 rollback이 진행됨
+    - @SpringBootTest는 내부에 @Transactional이 없기 때문에 끝나고 rollback이 안됨
+        - teardown을 통해 test끼리 간섭을 하지 않도록 함
+    - @SpringBootTest를 사용하면서 @Transactional 을 같이 사용하면 될 것 같지만 이건 또다른 문제를 야기함.
