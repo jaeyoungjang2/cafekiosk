@@ -170,3 +170,6 @@ red -> green -> blue
   - 상품 번호 리스트를 받아 주문 생성하기
   - 주문은 주문 상태, 주문 등록 시간을 가진다.
   - 주문의 총 금액을 계산할 수 있어야 한다.
+
+## 확인 point
+    - OrderService > orderCreate() 에서 살펴보면 Order가 저장될 떄 OrderProduct가 같이 저장되는 모습을 확인할 수 있다.
