@@ -3,6 +3,7 @@ package com.cafekiosk.cafekiosk.unit;
 import com.cafekiosk.cafekiosk.unit.beverage.Americano;
 import com.cafekiosk.cafekiosk.unit.beverage.Latte;
 import com.cafekiosk.cafekiosk.unit.order.Order;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ class CafeKioskTest {
 
 
     @Test
+    @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.")
     void add() {
         CafeKiosk cafeKiosk = new CafeKiosk();
         cafeKiosk.add(new Americano());
