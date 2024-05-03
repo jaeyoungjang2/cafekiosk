@@ -166,3 +166,7 @@ red -> green -> blue
 
 <img src="src/main/resources/images/BusinessLayerTest.png"  width="600" height="400"/>
 
+- 요구사항
+  - 상품 번호 리스트를 받아 주문 생성하기
+  - 주문은 주문 상태, 주문 등록 시간을 가진다.
+  - 주문의 총 금액을 계산할 수 있어야 한다.
