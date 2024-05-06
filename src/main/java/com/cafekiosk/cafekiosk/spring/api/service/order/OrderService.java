@@ -2,6 +2,7 @@ package com.cafekiosk.cafekiosk.spring.api.service.order;
 
 import com.cafekiosk.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
 import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
+import com.cafekiosk.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import com.cafekiosk.cafekiosk.spring.api.service.order.response.OrderResponse;
 import com.cafekiosk.cafekiosk.spring.domain.order.Order;
 import com.cafekiosk.cafekiosk.spring.domain.order.OrderRepository;
@@ -31,7 +32,7 @@ public class OrderService {
      * 데이터에 대한 lock을 잡고 순차적으로 처리할 수 있도록 함
      *
      */
-    public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+    public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.getProductNumbers();
         List<Product> products = findProductsBy(productNumbers);
 

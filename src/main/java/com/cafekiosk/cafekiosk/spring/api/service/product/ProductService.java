@@ -1,6 +1,7 @@
 package com.cafekiosk.cafekiosk.spring.api.service.product;
 
-import com.cafekiosk.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
+import com.cafekiosk.cafekiosk.spring.api.controller.product.request.ProductCreateRequest;
+import com.cafekiosk.cafekiosk.spring.api.service.product.request.ProductCreateServiceRequest;
 import com.cafekiosk.cafekiosk.spring.api.service.product.response.ProductResponse;
 import com.cafekiosk.cafekiosk.spring.domain.product.Product;
 import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
@@ -25,7 +26,7 @@ public class ProductService {
     // 동시 접속자가 너무 많은 경우에는 아예 productNumber 자체를 증가하는 값이 아니라 정책을 변경한다, UUID와 같은
 
     @Transactional
-    public ProductResponse createProduct(ProductCreateRequest request) {
+    public ProductResponse createProduct(ProductCreateServiceRequest request) {
         String nextProductNumber = createNextProductNumber();
 
         Product product = request.toEntity(nextProductNumber);

@@ -266,3 +266,6 @@ site.mockito.org
 - 특수한 형태의 validation을 구분해야함 (상품 이름 20자 제한)
 - 20자 제한은 서비스 layer에서 제한을 하던, product 생성자에서 검증을 하던, 조금 더 안쪽에서 검증을 하는게 맞다.
 
+## Layered architecture에서 가장 좋은 구조는 하위 layer가 상위 layer를 모르는 형태
+controller layer (상위)가 service layer (하위)를 주입받아서 사용하잖아요
+controller dto와 service dto를 따로 만들어주는 것이 좋다.

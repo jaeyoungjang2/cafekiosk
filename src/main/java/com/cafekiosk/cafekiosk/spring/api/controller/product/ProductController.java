@@ -1,7 +1,7 @@
 package com.cafekiosk.cafekiosk.spring.api.controller.product;
 
 import com.cafekiosk.cafekiosk.spring.api.ApiResponse;
-import com.cafekiosk.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
+import com.cafekiosk.cafekiosk.spring.api.controller.product.request.ProductCreateRequest;
 import com.cafekiosk.cafekiosk.spring.api.service.product.ProductService;
 import com.cafekiosk.cafekiosk.spring.api.service.product.response.ProductResponse;
 import jakarta.validation.Valid;
@@ -21,7 +21,7 @@ public class ProductController {
 
     @PostMapping("/api/v1/products/new")
     public ApiResponse<ProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest request) {
-        return ApiResponse.ok(productService.createProduct(request));
+        return ApiResponse.ok(productService.createProduct(request.toServiceRequest()));
     }
 
     @GetMapping("/api/v1/products/selling")
