@@ -2,11 +2,13 @@ package com.cafekiosk.cafekiosk.spring.api.controller.product;
 
 import com.cafekiosk.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
 import com.cafekiosk.cafekiosk.spring.api.service.product.ProductService;
+import com.cafekiosk.cafekiosk.spring.api.service.product.response.ProductResponse;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,6 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.List;
 
 // springbootTest는 전체 context를 다 띄움
 // controller layer 관련 bean들만 띄우는 annotation
@@ -152,5 +156,26 @@ class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value("BAD_REQUEST"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("상품 가격은 양수여야 합니다."))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data").isEmpty());
+    }
+
+    @DisplayName("판매 상품을 조회한다.")
+    @Test
+    void getSellingProducts() throws Exception {
+        // given
+        List<ProductResponse> result = List.of();
+        Mockito.when(productService.getSellingProducts()).thenReturn(result);
+
+        // when // then
+        mockMvc.perform(
+                        MockMvcRequestBuilders.get("/api/v1/products/selling")
+//                                .queryParam("name", "이름")
+                )
+                // 로그 출력
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.code").value("200"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.status").value("OK"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("OK"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.data").isArray());
     }
 }
