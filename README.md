@@ -187,3 +187,27 @@ red -> green -> blue
   - 주문 생성 시 재고 확인 및 개수 차감 후 생성하기
   - 재고는 상품번호를 가진다.
   - 재고와 관련있는 상품 타입은 병 음료, 베이커리이다.
+
+## Presentation Layer
+    - 외부 세계의 요청을 가장 먼저 받는 계층
+    - 파라미터에 대한 최소한의 검증을 수행한다.
+
+
+<img src="src/main/resources/images/LayeredArchietectureTest.png"  width="600" height="400"/>
+
+    - BusinessLayer와 PersistenceLayer를 합쳐서 테스트할 때는 스프링부트를 통으로 띄워서 통합 테스트를 했는데 PresentationLayer를 테스트할 때는 하위에 있는 두개의 Layer를 `Mocking` 해서 처리를 할 것이다.
+    - `Mocking` 가짜 객체로 대체하여 정상 동작할 것이라고 가정하고 presentationLayer를 집중해서 테스트한다.
+
+## Mock
+가짜, 대역이라는 의미
+
+## MockMvc
+MockMvc는 Mock(가짜) 객체를 사용해 스프링 MVC 동작을 재현할 수 있는 테스트 프레임 워크이다.
+Presentation Layer만 테스트해보고 싶은데 연결되어 있는 것들이 많아 테스트를 하기 위해 준비해야 하는 것이 많다.
+이를 해결하기 위해 테스트 이외의 것들은 잘 동작할 것이라고 가정하고 가짜 객체로 대체하는 데 이를 Mocking이라고 한다.
+
+
+
+- 요구 사항
+  - 관리자 페이지에서 신규 상품을 등록할 수 있다.
+  - 상품명, 상품 타입, 판매 상태, 가격 등을 입력받는다.
