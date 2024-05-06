@@ -7,10 +7,12 @@ import com.cafekiosk.cafekiosk.spring.api.repository.product.ProductRepository;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class ProductService {
@@ -22,6 +24,7 @@ public class ProductService {
     // productNumber field에다가 db에 unique index 제약 조건을 걸고 시도했는데 실패하면 시스템에서 알아서 3회 이상 재시도를 하도록
     // 동시 접속자가 너무 많은 경우에는 아예 productNumber 자체를 증가하는 값이 아니라 정책을 변경한다, UUID와 같은
 
+    @Transactional
     public ProductResponse createProduct(ProductCreateRequest request) {
         String nextProductNumber = createNextProductNumber();
 
@@ -43,7 +46,6 @@ public class ProductService {
 
         return String.format("%03d", nextProductNumberInt);
     }
-
 
     public List<ProductResponse> getSellingProducts() {
         // 판매중 또는 판매 보류인 상품만

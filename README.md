@@ -211,3 +211,24 @@ Presentation Layer만 테스트해보고 싶은데 연결되어 있는 것들이
 - 요구 사항
   - 관리자 페이지에서 신규 상품을 등록할 수 있다.
   - 상품명, 상품 타입, 판매 상태, 가격 등을 입력받는다.
+
+
+## Transactional에 대한 고찰
+- Transactional(readOnly = true)
+  - 읽기 전용을 의미
+  - CRUD에서 CUD 동작 하지 않으며 읽기 전용으로 동작한다.
+  - JPA : CUD 스냅샷 저장, 변경감지 X (성능 향상)
+
+- CQRS - Command (CUD) / Query (R)
+  - Command와 Read를 분리하자 => Transactional의 readOnly 옵션을 잘 분리해야 한다.
+
+- DB에 대한 endpoint를 구분 (aws의 오로라 db 또는 mysql에서 read용 db와 write용 db를 나눔)
+  - master db는 write 권한을 주고
+  - slave는 읽기 전용으로 많이 사용
+  - transactional read only true이면 slave db로 보내고
+  - read only가 false이면 command에 대한거니깐 master db로 보낸다.
+
+- 분리하는 방법은 두가지가 있다.
+- 한개의 파일로 관리 (기본 readonly =true로 주고 cud 작업은 어노테이션을 추가) 
+- 서비스를 분리해서 두개의 파일로 관리
+  - 커맨드용 서비스와 query용 서비스를 분리하자 
