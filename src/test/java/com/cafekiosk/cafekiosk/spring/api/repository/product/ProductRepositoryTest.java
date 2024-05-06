@@ -59,9 +59,7 @@ class ProductRepositoryTest {
     void findAllByProductNumberIn() {
         // given
         Product product1 = createProduct("001", HANDMADE, SELLING, "아메리카노", 4000);
-
         Product product2 = createProduct("002", HANDMADE, HOLD, "카페라떼", 4500);
-
         Product product3 = createProduct("003", HANDMADE, STOP_SELLING, "아메리카노", 7000);
 
         productRepository.saveAll(List.of(product1, product2, product3));

@@ -17,12 +17,31 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public void createProduct(ProductCreateRequest request) {
+    // 동시성 이슈 (상품을 동시에 등록하는 경우)
+    // 증가하는 형태의 번호를 등록하는 경우 여러명이 동시에 등록하는 경우
+    // productNumber field에다가 db에 unique index 제약 조건을 걸고 시도했는데 실패하면 시스템에서 알아서 3회 이상 재시도를 하도록
+    // 동시 접속자가 너무 많은 경우에는 아예 productNumber 자체를 증가하는 값이 아니라 정책을 변경한다, UUID와 같은
+
+    public ProductResponse createProduct(ProductCreateRequest request) {
+        String nextProductNumber = createNextProductNumber();
+
+        Product product = request.toEntity(nextProductNumber);
+        Product savedProduct = productRepository.save(product);
+
+        return ProductResponse.of(savedProduct);
+    }
+
+    private String createNextProductNumber() {
         // productNumber 상품의 고유 번호
         // DB에서 마지막 저장된 Product의 상품 번호를 읽어와서 +1
-        // 009 -> 010
         String latestProductNumber = productRepository.findLatestProductNumber();
+        if (latestProductNumber == null) {
+            return "001";
+        }
+        int latestProductNumberInt = Integer.parseInt(latestProductNumber);
+        int nextProductNumberInt = latestProductNumberInt + 1;
 
+        return String.format("%03d", nextProductNumberInt);
     }
 
 
