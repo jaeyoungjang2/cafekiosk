@@ -1,7 +1,7 @@
 package com.cafekiosk.cafekiosk.spring.api.service.product;
 
 import com.cafekiosk.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
-import com.cafekiosk.cafekiosk.spring.api.repository.product.ProductRepository;
+import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
 import com.cafekiosk.cafekiosk.spring.api.service.product.response.ProductResponse;
 import com.cafekiosk.cafekiosk.spring.domain.product.Product;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus;

@@ -1,7 +1,7 @@
 package com.cafekiosk.cafekiosk.spring.api.service.order;
 
 import com.cafekiosk.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
-import com.cafekiosk.cafekiosk.spring.api.repository.product.ProductRepository;
+import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
 import com.cafekiosk.cafekiosk.spring.api.service.order.response.OrderResponse;
 import com.cafekiosk.cafekiosk.spring.domain.order.OrderRepository;
 import com.cafekiosk.cafekiosk.spring.domain.product.Product;
@@ -9,7 +9,6 @@ import com.cafekiosk.cafekiosk.spring.domain.product.ProductType;
 import com.cafekiosk.cafekiosk.spring.domain.stock.Stock;
 import com.cafekiosk.cafekiosk.spring.domain.stock.StockRepository;
 import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

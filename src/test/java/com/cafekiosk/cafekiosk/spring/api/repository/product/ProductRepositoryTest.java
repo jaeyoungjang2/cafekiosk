@@ -1,5 +1,6 @@
 package com.cafekiosk.cafekiosk.spring.api.repository.product;
 
+import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
 import com.cafekiosk.cafekiosk.spring.domain.product.Product;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductType;

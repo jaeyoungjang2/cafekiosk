@@ -1,4 +1,4 @@
-package com.cafekiosk.cafekiosk.spring.api.repository.product;
+package com.cafekiosk.cafekiosk.spring.api.controller.product;
 
 import com.cafekiosk.cafekiosk.spring.domain.product.Product;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus;

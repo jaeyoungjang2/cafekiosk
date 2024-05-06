@@ -1,7 +1,7 @@
 package com.cafekiosk.cafekiosk.spring.api.service.order;
 
 import com.cafekiosk.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
-import com.cafekiosk.cafekiosk.spring.api.repository.product.ProductRepository;
+import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
 import com.cafekiosk.cafekiosk.spring.api.service.order.response.OrderResponse;
 import com.cafekiosk.cafekiosk.spring.domain.order.Order;
 import com.cafekiosk.cafekiosk.spring.domain.order.OrderRepository;
@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
