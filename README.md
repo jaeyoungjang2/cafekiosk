@@ -232,3 +232,37 @@ Presentation Layer만 테스트해보고 싶은데 연결되어 있는 것들이
 - 한개의 파일로 관리 (기본 readonly =true로 주고 cud 작업은 어노테이션을 추가) 
 - 서비스를 분리해서 두개의 파일로 관리
   - 커맨드용 서비스와 query용 서비스를 분리하자 
+
+- Mock 공식 문서
+site.mockito.org
+
+- 직렬화
+  - 객체 -> json
+  - objectMapper.writeValueAsString(객체) 메서드를 통해 객체를 json으로 변환
+- 역직렬화
+  - json -> 객체
+  - dto의 기본 생성자를 이용
+
+--- 
+
+## NotNull, NotEmpty, NotBlank
+### NotNull
+- null이 아니어야 한다.
+- "", " " 와 같이 빈 문자열, 공백은 통과가 된다.
+- enum일때는 보통 NotNull
+
+### NotEmpty
+- 빈문자열은 통과가 안된다.
+- " " 공백 통과, 
+
+### NotBlank
+- 빈문자열, 공백 모두 통과 불가
+- String 문자열은 보통 NotBlank를 사용
+
+
+## validation 책임 분리
+- 만약 상품 이름을 20자 제한으로 두자고 가정한다면, @Max(20) 을 사용해서 문자열 길이 제한을 두고 싶겠지만, 상품 이름에 대한 제한 정책이 Controller에서 제한을 두는 것이 맞는지 고민해야 한다.
+- 기본적인 문자열이라면 합당히 가져야할 속성에 대한 validation (not null, not empty, not blank)
+- 특수한 형태의 validation을 구분해야함 (상품 이름 20자 제한)
+- 20자 제한은 서비스 layer에서 제한을 하던, product 생성자에서 검증을 하던, 조금 더 안쪽에서 검증을 하는게 맞다.
+
