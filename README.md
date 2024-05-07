@@ -353,3 +353,15 @@ Spring을 사용하지 않고 Mockito를 이용해서 순수 단위 테스트를
 - Mockito를 사용할 때 given 절에 when이라는 문법이 들어가는 것이 이상하다 (아래 그림 참고)
 - Mockito를 상속받은 BDDMockito를 이용하여 문법이 이상해 보이는 것을 해결할 수 있다. (아래 그림 참고)
 ![img.png](img.png)
+
+
+## Classicist vs Mockist
+`Mockist`: 모든것을 Mocking 위주로 하라, 각각 테스트 잘했으니까 통합 테스트할 때는 기능 보장된 것을 다 mocking 처리하고 빠른시간 안에 처리하자
+service 단계 테스트할 때도 repository 단계에 step들을 mocking 처리하는 것이 Mockist 
+`Classicist`: 아니 Mocking을 다해버리면 실제 production 코드가 동작할 때 진짜 객체들이 협업을 할 것인데 잘 동작한다고 어떻게 보장할 수 있어? 진짜 객체로 테스트를 해야한다. (Mocking을 무조건 하지말자는 아님, 꼭 필요할 때만 쓰고 최대한 실제 객체를 사용하자)
+
+실제 프로덕션 코드에서 런타임 시점에 일어날 일을 정확하게 Stubbing 했다고 단언할 수 있는가?
+그렇지 않다면 Classicist와 같이 진짜 객체를 사용하는 것이 맞지 않나 생각을 한다.
+Presentation layer 또는 mail system과 같은 외부 시스템이 (외부 계) 들어가 있을 때만 mocking 처리를 하는 것이 좋을 것 같다.
+![img_2.png](img_2.png)
+
