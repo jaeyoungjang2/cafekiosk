@@ -269,3 +269,47 @@ site.mockito.org
 ## Layered architecture에서 가장 좋은 구조는 하위 layer가 상위 layer를 모르는 형태
 controller layer (상위)가 service layer (하위)를 주입받아서 사용하잖아요
 controller dto와 service dto를 따로 만들어주는 것이 좋다.
+
+<img src="src/main/resources/images/section5keyword.png"  width="600" height="400"/>
+
+layeredArchitecture 의 단점
+- JPA 기술과 관련된 annotation을 entity에 달아주고 있다.
+- db와 mapping 하기 위해서 나온 객체고
+- 주문을 하기 위한 객체는 분리되어야 하지 않나
+- OrderRepository도 똑같다. JPA를 쓰고 싶지 않은 경우 변경해야 하는 문제가 너무 많아진다.
+- 도메인 객체와 인프라 레이어와 강한 의존관계를 가지는게 맞나 기술과의 강결합이 너무 심하다
+- 그래서 나온게 hexagonal architecture
+
+https://vaadin.com/blog/ddd-part-3-domain-driven-design-and-the-hexagonal-architecture 
+
+<img src="src/main/resources/images/hexagonalArchitecture.png"  width="600" height="400"/>
+
+## layered architecture vs hexagonal architecture
+- domain에 대한 정책이 가장 한가운데에 있고
+- domain을 주변에 둘러싸는 port와 adapter가 있다
+- 외부세계는 client또는 db가 될 수 있따.
+- 여기서 핵심은 domain 객체가 가장 안쪽에 있다는 것이다.
+- domain에 접근하기 위해서는 adapter와 port라는 추상적인 것에 통해서 접근할 수 있다.
+- domain은 외부를 모르게 만들어 놓는 것이다.
+
+- DI 개념을 확장시켜서 사용하면 된다.
+- 추상된 인터페이스를 두고 이를 구현하는 구현체를 따로 두면 
+- data access를 하기 위한 repository interface를 따로 두고 이를 구현하는 jparepository를 따로 두고
+- runtime 시점에 주입하면 되면
+- domain 객체는 jpa를 몰라도 된다.
+- 이것이 헥사고날 아키텍처에 핵심이다.
+
+- layered architecture는 그림만 봐도 한쪽으로 요청이 되는데
+- 헥사고날은 domain model을 중심으로 둘러싸는 것을 볼 수 있다.
+
+- 작은 시스템은 layered architecture로 충분하지만
+- 시스템이 커지고 모듈이 많아진다면 처음부터 hexagonal architecture를 적용하는 것이 좋다고 본다.
+
+## querydsl
+querydsl은 컴파일 시점에 에러 잡을 수 있고, 동적쿼리를 만들 수 있다는게 큰 장점
+필드가 하나 늘어날 때 마다 2의 배수로 쿼리가 늘어날 수 있다. (조건마다 쿼리를 만들어야 하기 떄문에)
+<img src="src/main/resources/images/querydsl.png"  width="600" height="400"/>
+
+<img src="src/main/resources/images/section5keyword3.png"  width="600" height="400"/>
+
+section5 키워드 정리는 다시 들을 만 하다.
