@@ -342,3 +342,7 @@ transactional을 가지고 db를 조회하면 connection 자원을 계속 소유
 검증 목적이 다르다
 - Mock 행위 검증 (Behavior Verification) : When 해서 메서드가 특정 행위를 했을 때 어떤 값을 리턴할 거야 라고 행위를 확인하는 것에 초점
 - Stub 상태 검증 (State Verification) : 기능을 요청했을 때 Stub의 상태가 어떻게 바뀌었는지 검증하는 것에 초점 
+
+
+Spring을 사용하지 않고 Mockito를 이용해서 순수 단위 테스트를 하는 방법
+일부는 진짜 객체를 사용하고, 일부는 Stubbing 객체를 사용하고 싶은 경우에는 @Spy 어노테이션을 사용하면 된다.
