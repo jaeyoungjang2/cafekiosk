@@ -6,10 +6,7 @@ import com.cafekiosk.cafekiosk.spring.domain.history.mail.MailSendHistoryReposit
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -42,8 +39,11 @@ class MailServiceTest {
 
 
         // given
-//        when(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))
+//        Mockito.when(mailSendClient.sendEmail(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString()))
 //            .thenReturn(true);
+
+        BDDMockito.given(mailSendClient.sendEmail(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString()))
+                .willReturn(true);
 
 //        mailSendClient에 Mock 어노테이션 적용하는 대신 @Spy 어노테이션 적용하는 경우 아래와 같이 사용할 수 있다.
         Mockito.doReturn(true)

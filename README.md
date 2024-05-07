@@ -346,3 +346,10 @@ transactional을 가지고 db를 조회하면 connection 자원을 계속 소유
 
 Spring을 사용하지 않고 Mockito를 이용해서 순수 단위 테스트를 하는 방법
 일부는 진짜 객체를 사용하고, 일부는 Stubbing 객체를 사용하고 싶은 경우에는 @Spy 어노테이션을 사용하면 된다.
+
+
+## BDDMockito
+- BDD: 행동 주도 개발
+- Mockito를 사용할 때 given 절에 when이라는 문법이 들어가는 것이 이상하다 (아래 그림 참고)
+- Mockito를 상속받은 BDDMockito를 이용하여 문법이 이상해 보이는 것을 해결할 수 있다. (아래 그림 참고)
+![img.png](img.png)
