@@ -313,3 +313,15 @@ querydsl은 컴파일 시점에 에러 잡을 수 있고, 동적쿼리를 만들
 <img src="src/main/resources/images/section5keyword3.png"  width="600" height="400"/>
 
 section5 키워드 정리는 다시 들을 만 하다.
+
+## 요구사항
+- 관리자 탭에서 주문관리 탭에서 하루동안 발생한 매출을 메일로 받고 싶다.
+- 
+## mockito로 stubbing 하기
+`Stubbing`: mock 객체에다가 원하는 행위를 정의하는 것
+
+## 참고사항
+
+메일 전송하는 로직에는 transactional을 안붙이는게 좋다. (OrderStatisticsService)
+transactional을 가지고 db를 조회하면 connection 자원을 계속 소유하고 있게된다.
+메일 전송같은 긴 네트워크를 타거나 긴 작업은 트랜잭션을 타지 않아도 되기 때문에 transactional을 걸지 않는게 좋다.
