@@ -365,3 +365,5 @@ service 단계 테스트할 때도 repository 단계에 step들을 mocking 처�
 Presentation layer 또는 mail system과 같은 외부 시스템이 (외부 계) 들어가 있을 때만 mocking 처리를 하는 것이 좋을 것 같다.
 ![img_2.png](img_2.png)
 
+## section6 keyword 정리
+![img_3.png](img_3.png)
