@@ -420,8 +420,8 @@ stock1.deductQuantity()도 위와 같은 요인도 있지만,
 
 ## 테스트 간 독립성을 보장하자.
 `테스트에서 static 과 같은 공유 자원 사용 지양하기`
-테스트 간의 독립성을 보장하자.
-테스트 수행되는 환경에 따라 테스트 수행되는 순서가 달라질 수 있기 때문에 문제가 발생할 수 있다. 그렇기 때문에 공유 자원을 사용하는 것을 지양하자 (static)
+테스트 간의 독립성을 보장하자.  
+테스트 수행되는 환경에 따라 테스트 수행되는 순서가 달라질 수 있기 때문에 문제가 발생할 수 있다. 그렇기 때문에 공유 자원을 사용하는 것을 지양하자 (static)  
 하나의 객체가 변화하는 모습을 테스트해야 할 때, 이럴떄는 dynamic test를 하면된다.
 
 ![img_6.png](img_6.png)
@@ -432,15 +432,44 @@ stock1.deductQuantity()도 위와 같은 요인도 있지만,
 
 ![img_7.png](img_7.png)
 
-테스트 간 결합도를 생기게 만든다
-fixture를 수정하면 모든 테스트에 공통으로 영향을 주기 때문에 지양하는 것이 좋다.
-setup에 fixture를 구성했을 때 로직들이 파편화 되어있기 떄문에, 가장 밑쪽에 있는 테스트 코드들은 가독성이 떨어진다.
-그러면 언제 사용하냐? 잘 사용하지는 않지만 
-각 테스트 입장에서 봤을 때: 아예 몰라도 테스트 내용을 이해하는 데에 문제가 없는가?
-// 수정해도 모든 테스트에 영향을 주지 않는가
+테스트 간 결합도를 생기게 만든다  
+fixture를 수정하면 모든 테스트에 공통으로 영향을 주기 때문에 지양하는 것이 좋다.  
+setup에 fixture를 구성했을 때 로직들이 파편화 되어있기 떄문에, 가장 밑쪽에 있는 테스트 코드들은 가독성이 떨어진다.  
+그러면 언제 사용하냐? 잘 사용하지는 않지만   
+각 테스트 입장에서 봤을 때: 아예 몰라도 테스트 내용을 이해하는 데에 문제가 없는가?  
+// 수정해도 모든 테스트에 영향을 주지 않는가  
 
 위 두가지를 만족했을 때 beforeEach에 넣어도 된다고 생각한다.
 
 
 given 데이터가 너무 많아 미리 생성하고 싶을 때 data.sql 과 같이 이런 것을 test에서도 활용할 수 있다.
 서버를 띄울 때마다 
+
+## Test Fixture 클렌징
+`springBooTest + transactional vs tearDown`
+`deleteAll() vs deleteAllInBatch()`
+
+일반적으로는 SpringBootTest + Transactional을 이용해서 rollback 처리를 함
+spring batch를 사용한 batch 통합 테스트에서는 여러 transaction 경계가 참여하는데
+이럴때는 transaction rollback을 사용하기 어려워서
+tearDown을 통해서 데이터를 삭제한다.
+
+tearDown을 사용할 떄는 deleteAll, deleteAllInBatch를 사용을 고려해야한다.
+일반적으로 deleteAllInBatch를 사용한다.
+
+`deleteAll vs deleteAllInBatch` 차이를 알아보자.  
+OrderServiceTest의 tearDown 메서드 참고
+deleteAllInbatch
+  - delteAllInBatch는 외래키 조건이 걸려 있으면 삭제가 안됨;
+  - orderProduct를 제일 먼저 삭제한 다음, order과 product를 삭제해야함
+  - 한번에 삭제가 가능, delete 메서드는 한번에 삭제 하지 않고 건건히 삭제가 진행됨, 외래키가 있다면 외래키도 찾는 select 쿼리가 나감
+deleteAll
+  - deleteAll의 장점은 order를 지우면서 orderProduct도 같이 지워줌
+  - foreign를 맺고 있는 데이터를 가지고 와서 건 수별로 삭제하고 자기 자신도 건수별로 삭제함
+  - 그렇다고 순서를 고려하지 않아도 되는 것은 아니다
+    - productRepository.deleteAll() -> orderRepository.deleteAll() 은 불가능 
+    - product는 OrderProduct를 모르기 때문에 에러 발생
+deleteAll는 select 쿼리 + delete 쿼리가 나감
+
+order <-> orderProduct <-> product 관계의 entity가 존재하는 상황
+orderProduct 삭제 -> product 삭제 -> order 삭제와 같이 (orderProduct를 먼저 삭제해야 product와 order 테이블을 삭제할 수 있음)
