@@ -1,5 +1,6 @@
 package com.cafekiosk.cafekiosk.spring.api.controller.product;
 
+import com.cafekiosk.cafekiosk.spring.ControllerTestSupport;
 import com.cafekiosk.cafekiosk.spring.api.controller.product.request.ProductCreateRequest;
 import com.cafekiosk.cafekiosk.spring.api.service.product.ProductService;
 import com.cafekiosk.cafekiosk.spring.api.service.product.response.ProductResponse;
@@ -22,14 +23,8 @@ import java.util.List;
 
 // springbootTest는 전체 context를 다 띄움
 // controller layer 관련 bean들만 띄우는 annotation
-@WebMvcTest(controllers = ProductController.class)
-class ProductControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
-    private ProductService productService;
+//@WebMvcTest(controllers = ProductController.class)
+class ProductControllerTest extends ControllerTestSupport {
 
     @Autowired
     private ObjectMapper objectMapper;

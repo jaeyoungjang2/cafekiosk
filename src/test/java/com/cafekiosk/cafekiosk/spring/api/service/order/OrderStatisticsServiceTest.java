@@ -1,5 +1,6 @@
 package com.cafekiosk.cafekiosk.spring.api.service.order;
 
+import com.cafekiosk.cafekiosk.spring.IntegrationTestSupport;
 import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
 import com.cafekiosk.cafekiosk.spring.client.mail.MailSendClient;
 import com.cafekiosk.cafekiosk.spring.domain.history.mail.MailSendHistory;
@@ -25,8 +26,8 @@ import static com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus
 import static com.cafekiosk.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-class OrderStatisticsServiceTest {
+
+class OrderStatisticsServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private OrderStatisticsService orderStatisticsService;
@@ -42,9 +43,6 @@ class OrderStatisticsServiceTest {
 
     @Autowired
     private MailSendHistoryRepository mailSendHistoryRepository;
-
-    @MockBean
-    private MailSendClient mailSendClient;
 
     @AfterEach
     void tearDown() {

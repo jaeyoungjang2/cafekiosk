@@ -1,5 +1,6 @@
 package com.cafekiosk.cafekiosk.spring.api.repository.product;
 
+import com.cafekiosk.cafekiosk.spring.IntegrationTestSupport;
 import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
 import com.cafekiosk.cafekiosk.spring.domain.product.Product;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus;
@@ -7,8 +8,10 @@ import com.cafekiosk.cafekiosk.spring.domain.product.ProductType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,13 +21,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
 // 스프링 서버를 띄워서 테스트
-@SpringBootTest
+//@SpringBootTest
 // 스프링 서버를 띄워서 테스트
 // 스프링 부트 테스트 보다 가볍다.
 // JPA와 관련된 bean들만 띄워서 테스트 가능하기 때문에 SpringBootTest 조금 더 가볍다
 //@DataJpaTest
-@ActiveProfiles("test")
-class ProductRepositoryTest {
+//@ActiveProfiles("test")
+@Transactional
+class ProductRepositoryTest extends IntegrationTestSupport {
 
     @Autowired
     private ProductRepository productRepository;

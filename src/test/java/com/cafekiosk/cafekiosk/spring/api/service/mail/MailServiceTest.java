@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class MailServiceTest {
 
-    @Spy
-//    @Mock
+//    @Spy
+    @Mock
     private MailSendClient mailSendClient;
 
     @Mock
@@ -46,9 +46,9 @@ class MailServiceTest {
                 .willReturn(true);
 
 //        mailSendClient에 Mock 어노테이션 적용하는 대신 @Spy 어노테이션 적용하는 경우 아래와 같이 사용할 수 있다.
-        Mockito.doReturn(true)
-                .when(mailSendClient)
-                .sendEmail(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
+//        Mockito.doReturn(true)
+//                .when(mailSendClient)
+//                .sendEmail(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
 
         // when
         boolean result = mailService.sendMail("", "", "", "");

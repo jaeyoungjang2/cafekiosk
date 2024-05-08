@@ -1,6 +1,6 @@
 package com.cafekiosk.cafekiosk.spring.api.service.order;
 
-import com.cafekiosk.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
+import com.cafekiosk.cafekiosk.spring.IntegrationTestSupport;
 import com.cafekiosk.cafekiosk.spring.api.controller.product.ProductRepository;
 import com.cafekiosk.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import com.cafekiosk.cafekiosk.spring.api.service.order.response.OrderResponse;
@@ -9,12 +9,10 @@ import com.cafekiosk.cafekiosk.spring.domain.product.Product;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductType;
 import com.cafekiosk.cafekiosk.spring.domain.stock.Stock;
 import com.cafekiosk.cafekiosk.spring.domain.stock.StockRepository;
-import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,10 +21,7 @@ import static com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus
 import static com.cafekiosk.cafekiosk.spring.domain.product.ProductType.*;
 import static org.assertj.core.api.Assertions.*;
 
-@SpringBootTest
-@Transactional
-@ActiveProfiles("test")
-class OrderServiceTest {
+class OrderServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private ProductRepository productRepository;
@@ -39,12 +34,13 @@ class OrderServiceTest {
     @Autowired
     private OrderService orderService;
 
-//    @AfterEach
-//    void tearDown() {
-//        orderProductRepository.deleteAllInBatch();
-//        productRepository.deleteAllInBatch();
-//        orderRepository.deleteAllInBatch();
-//    }
+    @AfterEach
+    void tearDown() {
+        orderProductRepository.deleteAllInBatch();
+        productRepository.deleteAllInBatch();
+        orderRepository.deleteAllInBatch();
+        stockRepository.deleteAllInBatch();
+    }
 
     @DisplayName("주문번호 리스트를 받아 주문을 생성한다.")
     @Test

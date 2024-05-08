@@ -1,5 +1,6 @@
 package com.cafekiosk.cafekiosk.spring.domain.stock;
 
+import com.cafekiosk.cafekiosk.spring.IntegrationTestSupport;
 import com.cafekiosk.cafekiosk.spring.domain.product.Product;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
@@ -14,9 +15,9 @@ import static com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
-@SpringBootTest
+//@SpringBootTest
 @Transactional
-class StockRepositoryTest {
+class StockRepositoryTest extends IntegrationTestSupport {
 
     @Autowired
     private StockRepository stockRepository;
