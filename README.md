@@ -473,3 +473,21 @@ deleteAll는 select 쿼리 + delete 쿼리가 나감
 
 order <-> orderProduct <-> product 관계의 entity가 존재하는 상황
 orderProduct 삭제 -> product 삭제 -> order 삭제와 같이 (orderProduct를 먼저 삭제해야 product와 order 테이블을 삭제할 수 있음)
+
+## ParameterizedTest
+parameterizedTest 문서  
+https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests  
+spock 문서  
+https://spockframework.org/spock/docs/2.3/data_driven_testing.html#data-tables  
+실제로는 여러가지 케이스인데 한개의 테스트에서 처리를 하고 싶을 때 테스트 코드를 나누는 것이 바람직하긴 하다.  
+그런 케이스가 아니고 하나의 케이스인데 값을 바꾸고 싶을 때 사용하는 것이 parameterizedTest이다.  
+
+ProductTypeTest 에서 아래와 같은 메서드를 만들었을 때
+아래와 같이 변경할 수 있다.
+
+### 변경 전 예시 코드  
+![img_8.png](img_8.png)
+### 변경 후 예시 코드 (csv source)
+![img_9.png](img_9.png)
+### 변경 후 예시 코드2 (method source : 메서드 이름으로 지정)
+![img_10.png](img_10.png)
