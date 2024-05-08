@@ -7,9 +7,7 @@ import com.cafekiosk.cafekiosk.spring.api.service.product.response.ProductRespon
 import com.cafekiosk.cafekiosk.spring.domain.product.Product;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductSellingStatus;
 import com.cafekiosk.cafekiosk.spring.domain.product.ProductType;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -30,6 +28,24 @@ class ProductServiceTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    // 전체 테스트 시작 전
+    @BeforeAll
+    static void beforeAll() {
+
+    }
+
+    // 테스트 각각이 시작되기 전
+    @BeforeEach
+    void setUp() {
+
+    }
+
+    // 테스트 전체가 끝난 후
+    @AfterAll
+    static void afterAll() {
+
+    }
 
     @AfterEach
     void tearDown() {
