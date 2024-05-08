@@ -530,3 +530,6 @@ ProductControllerTest 에서 ProductCreateRequest dto의 builder 같은 경우 p
 ![img_13.png](img_13.png)
 
 만들어도 된다. 하지만 보수적으로 접근하도록 하자.
+
+## section 7 keyword
+![img_14.png](img_14.png)
