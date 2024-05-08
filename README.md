@@ -491,3 +491,15 @@ ProductTypeTest 에서 아래와 같은 메서드를 만들었을 때
 ![img_9.png](img_9.png)
 ### 변경 후 예시 코드2 (method source : 메서드 이름으로 지정)
 ![img_10.png](img_10.png)
+
+## DynamicTest
+여러 테스트들이 하나의 공유변수를 가지고 테스트를 사용하는 것에 대해서 지양할 필요가 있다.  
+그렇게 되면 테스트 간의 순서가 생기게 되고 강결합이 되면서 독립성이 보장되지 않는다.  
+그런케이스가 아니고 환경을 설정해놓고 환경에 변화를 주면서 중간에 변화를 주고 행위에 따른 결과가 바뀌는 시나리오 테스트를 하고 싶을 때 dynamicTest를 사용한다.  
+
+Test 대신 TestFactory 어노테이션 사용  
+return 값으로 Collection, Stream과 같은 iterable 한 것들을 주면 된다.   
+![img_11.png](img_11.png)
+
+실 사용방법은 아래와 같다.  
+![img_12.png](img_12.png)
