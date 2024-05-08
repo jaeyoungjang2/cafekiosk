@@ -512,3 +512,13 @@ Tasks > Verification > test
 
 @SpringBootApplication 어노테이션이 있는 것 마다 SpringBoot가 올라가고, 내려가고 해서 전체 테스트의 시간이 늘어난다.
 어떻게 하면 더 빠른시간 안에 효율적으로 테스트할 수 있을까
+
+## private 메서드의 테스트는 어떻게 하나요?
+private 메서드는 테스트 할 필요 없다.
+객체가 공개한 api를 테스트하다보면 자연스럽게 테스트 되기 떄문에
+그런데 테스트 욕망이 너무 든다면 객체분리의 신호로 보면 된다.
+하나의 public 메서드 안에서 하고 있는 일이 너무 많은가? 를 의심하고 별도의 객체로 위임해야 하는지를 고민하고,
+별도의 객체로 분리했다면 테스트 코드도 작성하면 된다.
+
+ProductService 에서 createNextProductNumber()를 
+ProductNumberFactory 객체로 분리 한 것을 참고

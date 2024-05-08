@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductNumberFactory productNumberFactory;
 
     // 동시성 이슈 (상품을 동시에 등록하는 경우)
     // 증가하는 형태의 번호를 등록하는 경우 여러명이 동시에 등록하는 경우
@@ -27,7 +28,7 @@ public class ProductService {
 
     @Transactional
     public ProductResponse createProduct(ProductCreateServiceRequest request) {
-        String nextProductNumber = createNextProductNumber();
+        String nextProductNumber = productNumberFactory.createNextProductNumber();
 
         Product product = request.toEntity(nextProductNumber);
         Product savedProduct = productRepository.save(product);
@@ -35,21 +36,7 @@ public class ProductService {
         return ProductResponse.of(savedProduct);
     }
 
-    private String createNextProductNumber() {
-        // productNumber 상품의 고유 번호
-        // DB에서 마지막 저장된 Product의 상품 번호를 읽어와서 +1
-        String latestProductNumber = productRepository.findLatestProductNumber();
-        if (latestProductNumber == null) {
-            return "001";
-        }
-        int latestProductNumberInt = Integer.parseInt(latestProductNumber);
-        int nextProductNumberInt = latestProductNumberInt + 1;
-
-        return String.format("%03d", nextProductNumberInt);
-    }
-
     public List<ProductResponse> getSellingProducts() {
-        // 판매중 또는 판매 보류인 상품만
         List<Product> products = productRepository.findAllBySellingStatusIn(ProductSellingStatus.forDisplay());
 
         return products.stream()
