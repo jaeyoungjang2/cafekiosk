@@ -522,3 +522,11 @@ private 메서드는 테스트 할 필요 없다.
 
 ProductService 에서 createNextProductNumber()를 
 ProductNumberFactory 객체로 분리 한 것을 참고
+
+
+## 테스트에서만 필요한 메서드가 생겼는데 프로덕션 코드에서는 필요 없다면?
+ProductControllerTest 에서 ProductCreateRequest dto의 builder 같은 경우 production code에서는 필요가 없다. (아래 그림 참고)
+
+![img_13.png](img_13.png)
+
+만들어도 된다. 하지만 보수적으로 접근하도록 하자.
